@@ -1,3 +1,8 @@
+---
+title: Genome Annotation
+toc: true
+---
+
 ## 4. Genome annotation
 
 >**Objectives** 

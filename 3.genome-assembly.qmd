@@ -1,3 +1,9 @@
+---
+title: Genome Assembly
+toc: true
+---
+
+
 ## 3. Genome assembly
 
 >**Objective:** Using quality filtered reads to assemble bacterial genomes, and assess how different assembler parameters can impact assembly quality.

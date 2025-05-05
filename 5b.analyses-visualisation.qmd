@@ -1,5 +1,6 @@
 ---
-title: "Phylogenetic tree visualisation"
+title: Phylogenetic tree visualisation
+toc: true
 date: "2025-03-12"
 ---
 

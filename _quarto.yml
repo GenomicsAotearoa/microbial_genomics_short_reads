@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Microbial Genome Assembly with Short Reads"
+  sidebar:
+    style: "docked"
+    contents:
+      - text: "Introduction"
+        href: 1.introduction.qmd
+      - section: "Day One"  
+#        href: day_1_overview.qmd
+        contents:
+          - 2.sequencing-read-qc.qmd
+          - 3.genome-assembly.qmd
+      - section: "Day Two" 
+#        href: day_2_overview.qmd 
+        contents:
+          - 4.genome-annotation.qmd
+          - 5a.analyses-visualisation.qmd
+          - 5b.analyses-visualisation.qmd
+#      - section: "Supplementary"
+#        contents:
+#        - href: supplementary_1.qmd
+#          text: Supplementary 1 - Quantile Normalisation
+
+
+format:
+  html:
+    theme: zephyr
+    css: styles.css
+    navigation: true
+

@@ -1,3 +1,9 @@
+---
+title: Introduction
+toc: true
+---
+
+
 # Workshop - Microbial genome assembly using short sequencing reads
 
 This workshop aims to provide a comprehensive understanding of microbial genome assembly using short-read sequencing data. It showcases the different stages involved in assembling bacterial genomes from raw sequencing data of bacterial isolates, including quality control, genome assembly using a *de novo* approach, as well as genome annotation and visualisation. 

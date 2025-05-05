@@ -1,3 +1,9 @@
+---
+title: Sequencing Read Quality Control
+toc: true
+---
+
+
 ## 2. Sequencing data - Quality control
 
 >**Objective:** When receiving fresh sequencing data, there are a few critical steps to ensure that sequences are good enough to be assembled into genomes. Poor quality sequencing data can lead to failed genome assemblies or misleading results. The main objective of this section is to assess sequencing data quality, and get the sequences cleaned up and ready for genome assembly. This step ensures that unwanted artifacts like sequencing adapters or low-quality sequences are removed before assembly.
