@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-604720bb1232338eff9fd4a651e86bdf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -240,8 +240,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="genome-annotation" class="level2">
 <h2 class="anchored" data-anchor-id="genome-annotation">4. Genome annotation</h2>
+<p><strong>Objectives</strong></p>
 <blockquote class="blockquote">
-<p><strong>Objectives</strong> - Assessing genome quality - Assigning taxonomy - Predicting gene sequences</p>
+<ul>
+<li>Assessing genome quality</li>
+<li>Assigning taxonomy</li>
+<li>Predicting gene sequences</li>
+</ul>
 </blockquote>
 <hr>
 <section id="genome-quality" class="level3">
@@ -278,7 +283,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> checkm2.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Output files</strong></p>
 <p>CheckM2 generates several output files and directories that provide detailed metrics on genome quality.</p>
-<p><strong>predicted_quality.tsv:</strong> this table contains the estimated completeness and contamination for each genome, along with other quality metrics. Key columns include: - <strong>Completeness:</strong> Percentage of expected single-copy genes present in the genome. High completeness (&gt;90%) indicates a near-complete genome. - <strong>Contamination:</strong> Percentage of duplicated single-copy genes, indicating contamination or strain heterogeneity. Low contamination (&lt;5%) is ideal. - <strong>Strain Heterogeneity:</strong> A measure of strain-level variation. High values may indicate the presence of multiple closely related strains.</p>
+<p><strong>predicted_quality.tsv:</strong> this table contains the estimated completeness and contamination for each genome, along with other quality metrics. Key columns include:</p>
+<ul>
+<li><p><strong>Completeness:</strong> Percentage of expected single-copy genes present in the genome. High completeness (&gt;90%) indicates a near-complete genome.</p></li>
+<li><p><strong>Contamination:</strong> Percentage of duplicated single-copy genes, indicating contamination or strain heterogeneity. Low contamination (&lt;5%) is ideal.</p></li>
+<li><p><strong>Strain Heterogeneity:</strong> A measure of strain-level variation. High values may indicate the presence of multiple closely related strains.</p></li>
+</ul>
 <p><strong>3. Create a subset of CheckM2 results for later use (visualisation)</strong></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 7.genome_annotation/genome_quality</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>

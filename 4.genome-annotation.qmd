@@ -5,7 +5,8 @@ toc: true
 
 ## 4. Genome annotation
 
->**Objectives** 
+**Objectives** 
+
 >- Assessing genome quality
 >- Assigning taxonomy 
 >- Predicting gene sequences
@@ -72,8 +73,11 @@ CheckM2 generates several output files and directories that provide detailed met
 
 **predicted_quality.tsv:** this table contains the estimated completeness and contamination for each genome, along with other quality metrics.
 Key columns include:
+
   - **Completeness:** Percentage of expected single-copy genes present in the genome. High completeness (>90%) indicates a near-complete genome.
+
   - **Contamination:** Percentage of duplicated single-copy genes, indicating contamination or strain heterogeneity. Low contamination (<5%) is ideal.
+
   - **Strain Heterogeneity:** A measure of strain-level variation. High values may indicate the presence of multiple closely related strains.
 
 
