@@ -207,12 +207,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#genome-assembly" id="toc-genome-assembly" class="nav-link active" data-scroll-target="#genome-assembly">3. Genome assembly</a>
-  <ul class="collapse">
-  <li><a href="#spades" id="toc-spades" class="nav-link" data-scroll-target="#spades">3.1 SPAdes</a></li>
-  <li><a href="#optimizing-spades" id="toc-optimizing-spades" class="nav-link" data-scroll-target="#optimizing-spades">3.2 Optimizing SPAdes</a></li>
-  <li><a href="#comparing-assembly-statistics" id="toc-comparing-assembly-statistics" class="nav-link" data-scroll-target="#comparing-assembly-statistics">3.3 Comparing assembly statistics</a></li>
-  </ul></li>
+  <li><a href="#de-novo-genome-assembly-with-spades" id="toc-de-novo-genome-assembly-with-spades" class="nav-link active" data-scroll-target="#de-novo-genome-assembly-with-spades">1. <em>De novo</em> genome assembly with SPAdes</a></li>
+  <li><a href="#optimizing-spades" id="toc-optimizing-spades" class="nav-link" data-scroll-target="#optimizing-spades">2. Optimizing SPAdes</a></li>
+  <li><a href="#comparing-assembly-statistics" id="toc-comparing-assembly-statistics" class="nav-link" data-scroll-target="#comparing-assembly-statistics">3. Comparing assembly statistics</a></li>
   </ul>
 </nav>
     </div>
@@ -238,19 +235,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="genome-assembly" class="level2">
-<h2 class="anchored" data-anchor-id="genome-assembly">3. Genome assembly</h2>
 <blockquote class="blockquote">
 <p><strong>Objective:</strong> Using quality filtered reads to assemble bacterial genomes, and assess how different assembler parameters can impact assembly quality.</p>
 </blockquote>
-<section id="spades" class="level3">
-<h3 class="anchored" data-anchor-id="spades">3.1 SPAdes</h3>
+<section id="de-novo-genome-assembly-with-spades" class="level3">
+<h3 class="anchored" data-anchor-id="de-novo-genome-assembly-with-spades">1. <em>De novo</em> genome assembly with SPAdes</h3>
 <p><a href="https://github.com/ablab/spades">SPAdes</a> is a popular <em>de novo</em> assembler for microbial genome assembly. It uses a multi-kmer strategy, contains assembly pipelines for isolated prokaryotic genome data and supports Illumina short reads, single-cell sequencing, and hybrid assembly (Illumina + Nanopore/PacBio).</p>
 <hr>
-<p><strong>1. Create directory for genome assemblies and slurm script</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 5.spades_assembly/v1</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> spades_assembly_v1.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>1. Create slurm script</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> spades_assembly_v1.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Copy in spades_assembly_v1.sh</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash -e</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -268,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">array</span><span class="op">=</span><span class="va">(</span><span class="st">"01"</span> <span class="st">"02"</span> <span class="st">"03"</span> <span class="st">"04"</span> <span class="st">"05"</span> <span class="st">"06"</span> <span class="st">"07"</span> <span class="st">"08"</span> <span class="st">"09"</span> <span class="st">"10"</span><span class="va">)</span> </span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> 5.spades_assembly/v1/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 5.spades_assembly/v1/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> spades.py <span class="at">-k</span> auto <span class="at">-t</span> 8 <span class="dt">\</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">-1</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R1.fastq <span class="dt">\</span></span>
@@ -321,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 <section id="optimizing-spades" class="level3">
-<h3 class="anchored" data-anchor-id="optimizing-spades">3.2 Optimizing SPAdes</h3>
+<h3 class="anchored" data-anchor-id="optimizing-spades">2. Optimizing SPAdes</h3>
 <blockquote class="blockquote">
 <p><strong>Objective:</strong> Explore how different SPAdes parameters affect assembly quality and contiguity</p>
 </blockquote>
@@ -330,9 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>1. Assemble an isolate using different k-mer settings</strong></p>
 <p>By default, SPAdes automatically selects k-mer sizes, but we can manually specify them. The recommended k-mer sizes for different sequencing technologies can be found in the SPAdes documentation.</p>
 <p>–&gt; Repeat steps in 3.1 and change kmer sizes.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> 5.spades_assembly/v2</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> spades_assembly_v2.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> spades_assembly_v2.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Copy in spades_assembly_v2.sh</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash -e</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -350,7 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">array</span><span class="op">=</span><span class="va">(</span><span class="st">"01"</span> <span class="st">"02"</span> <span class="st">"03"</span> <span class="st">"04"</span> <span class="st">"05"</span> <span class="st">"06"</span> <span class="st">"07"</span> <span class="st">"08"</span> <span class="st">"09"</span> <span class="st">"10"</span><span class="va">)</span> </span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> 5.spades_assembly/v2/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 5.spades_assembly/v2/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> spades.py <span class="at">-k</span> 33,55,77,99,121 <span class="at">-t</span> 8 <span class="dt">\</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">-1</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R1.fastq <span class="dt">\</span></span>
@@ -363,9 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>2. Experiment with <code>--careful</code></strong></p>
 <p>The –careful mode aims to reduce the number of mismatches and short indels. This option is recommended only for assembly of small genomes such as bacterial genomes, but not for larger genomes.</p>
 <p>–&gt; Repeat steps in 3.1 and add the –careful flag.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> 5.spades_assembly/v3</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> spades_assembly_v3.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> spades_assembly_v3.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Copy in 4.spades_assembly_v3.sh</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash -e</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -383,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">array</span><span class="op">=</span><span class="va">(</span><span class="st">"01"</span> <span class="st">"02"</span> <span class="st">"03"</span> <span class="st">"04"</span> <span class="st">"05"</span> <span class="st">"06"</span> <span class="st">"07"</span> <span class="st">"08"</span> <span class="st">"09"</span> <span class="st">"10"</span><span class="va">)</span> </span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> 5.spades_assembly/v3/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 5.spades_assembly/v3/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> spades.py <span class="at">-k</span> auto <span class="at">--careful</span> <span class="at">-t</span> 8 <span class="dt">\</span></span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">-1</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R1.fastq <span class="dt">\</span></span>
@@ -395,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 <section id="comparing-assembly-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="comparing-assembly-statistics">3.3 Comparing assembly statistics</h3>
+<h3 class="anchored" data-anchor-id="comparing-assembly-statistics">3. Comparing assembly statistics</h3>
 <p><strong>1. Filter out short sequences</strong></p>
 <p>Before looking at the assemblies in more detail, we will first remove scaffolds that are shorter than 1000 bp. It is common practice to do so - there are several reasons why, such as minimizing assembly artefacts and improving downstream analyses such as gene predictions (that is partly because the average bacterial gene length is aroud 900 to 1000 bp).</p>
 <p>To filter out sequences &lt; 1000 bp, we will use seqmagick. Clear out previous modules to avoid conflicts and load seqmagick.</p>
@@ -441,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>echo "SPAdes assembly v1" &amp;&amp; cut -f1,3,7 assembly_stats_v1.txt 
 echo "SPAdes assembly v2" &amp;&amp; cut -f1,3,7 assembly_stats_v2.txt 
 echo "SPAdes assembly v3" &amp;&amp; cut -f1,3,7 assembly_stats_v3.txt </code></pre>
-<p>Discussion points:</p>
+<p><strong>Discussion points:</strong></p>
 <ul>
 <li>How do N50 values differ between default vs.&nbsp;custom k-mer assembly?</li>
 <li>Does manually setting k-mers improve contiguity?</li>
@@ -450,7 +439,6 @@ echo "SPAdes assembly v3" &amp;&amp; cut -f1,3,7 assembly_stats_v3.txt </code></
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
