@@ -1,6 +1,5 @@
 ---
-title: Microbial Genome Assembbly 
-subtitle: Using short reads
+title: Microbial Genome Assembbly with Short Reads 
 ---
 
-Welcome page
+Welcome to our online workshop on Microbial Genome Assembly with Short Reads. This workshop runs over two half-days, from 9am - 1pm each day. This material will remain live and available, and assumes that you are working on the NeSI (New Zealand eScience Infrastructure) HPC system. 
