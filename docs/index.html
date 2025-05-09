@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Microbial Genome Assembbly with Short Reads – Microbial Genome Assembly with Short Reads</title>
+<title>Introduction – Microbial Genome Assembly with Short Reads</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar docked fullcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -107,12 +107,6 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./1.introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -170,13 +164,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sequencing-and-genome-assembly" id="toc-sequencing-and-genome-assembly" class="nav-link active" data-scroll-target="#sequencing-and-genome-assembly">Sequencing and genome assembly</a>
+  <ul class="collapse">
+  <li><a href="#de-novo-vs.-reference-guided-assembly" id="toc-de-novo-vs.-reference-guided-assembly" class="nav-link" data-scroll-target="#de-novo-vs.-reference-guided-assembly"><em>De novo</em> vs.&nbsp;reference-guided assembly</a></li>
+  <li><a href="#genome-assembly-workflow" id="toc-genome-assembly-workflow" class="nav-link" data-scroll-target="#genome-assembly-workflow">Genome assembly workflow</a></li>
+  <li><a href="#key-considerations" id="toc-key-considerations" class="nav-link" data-scroll-target="#key-considerations">Key considerations</a></li>
+  </ul></li>
+  <li><a href="#a-bit-of-background-on-the-data" id="toc-a-bit-of-background-on-the-data" class="nav-link" data-scroll-target="#a-bit-of-background-on-the-data">A bit of background on the data</a></li>
+  <li><a href="#attribution-notice" id="toc-attribution-notice" class="nav-link" data-scroll-target="#attribution-notice">Attribution notice</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Microbial Genome Assembbly with Short Reads</h1>
+<h1 class="title">Introduction</h1>
 </div>
 
 
@@ -193,9 +202,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome to our online workshop on Microbial Genome Assembly with Short Reads. This workshop runs over two half-days, from 9am - 1pm each day. This material will remain live and available, and assumes that you are working on the NeSI (New Zealand eScience Infrastructure) HPC system.</p>
+<p>This workshop aims to provide a comprehensive understanding of microbial genome assembly using short-read sequencing data. It showcases the different stages involved in assembling bacterial genomes from raw sequencing data of bacterial isolates, including quality control, genome assembly using a <em>de novo</em> approach, as well as genome annotation and visualisation.</p>
+<p>This workshop assumes that attendees have basic knowledge in commandline and R scripting.</p>
+<section id="sequencing-and-genome-assembly" class="level2">
+<h2 class="anchored" data-anchor-id="sequencing-and-genome-assembly">Sequencing and genome assembly</h2>
+<p>The majority of microbial genome assemblies today are based on short-read sequencing platforms such as Illumina, which offer the advantages of high throughput, low cost, and relatively low error rates. However, short reads present challenges in genome assembly due to their limited length and the presence of repetitive regions in genomes. While longer reads (e.g., from PacBio or Oxford Nanopore) can provide better coverage of these regions, short-read sequencing remains the most common and accessible method for routine microbial genome assembly.</p>
+<section id="de-novo-vs.-reference-guided-assembly" class="level3">
+<h3 class="anchored" data-anchor-id="de-novo-vs.-reference-guided-assembly"><em>De novo</em> vs.&nbsp;reference-guided assembly</h3>
+<p><em>De novo</em> genome assembly refers to the process of constructing a genome from scratch without using a reference genome. This approach is particularly useful when working with organisms for which no high quality, closed reference genome is available (which also is quite the norm for microorganisms). The process of <em>de novo</em> assembly relies on the identification of overlap regions on the sequence reads themselves to reconstruct genomes. It is often preferred for microbial genomes when high-quality, non-contaminated sequencing data is available, as it avoids biases that may arise from comparison to reference genomes that would be, for example, phylogenetically too distant.</p>
+<p>In contrast, reference-guided assembly involves mapping short-read sequences to an existing reference genome of a closely related species. This method relies on the reference genome to guide the assembly process, making it faster and potentially more accurate, particularly for well-studied organisms.</p>
+</section>
+<section id="genome-assembly-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="genome-assembly-workflow">Genome assembly workflow</h3>
+<p><img src="images/draft-workflow.png"></p>
+</section>
+<section id="key-considerations" class="level3">
+<h3 class="anchored" data-anchor-id="key-considerations">Key considerations</h3>
+<p>There are a few general points that are worth considering when setting up a study involving sequencing and genome assembly from microbial isolates, with emphasis on each point likely influenced by the research question(s):</p>
+<ul>
+<li>Sequencing read length: “short” read length usually sits between 50 and 300 bp, longer reads can improve assembly contiguity and genome quality.</li>
+<li>Sequencing depth: number of times each base is read during sequencing. Higher depth reduces sequencing errors and noise, leading to more accurate base calls.</li>
+<li>Contamination: non-target DNA (e.g., from host or environment) can interfere with the assembly process.</li>
+</ul>
+</section>
+</section>
+<section id="a-bit-of-background-on-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="a-bit-of-background-on-the-data">A bit of background on the data</h2>
+<p>Data used in this workshop was retrieved from Tee et al., 2021: “Genome streamlining, plasticity, and metabolic versatility distinguish co-occurring toxic and nontoxic cyanobacterial strains of <em>Microcoleus</em>” (<a href="https://doi.org/10.1128/mBio.02235-21">https://doi.org/10.1128/mBio.02235-21</a>).</p>
+<p>This workshop works through sequencing data from 10 isolates of <em>Microcoleus</em>. Species from this benthic cyanobacterial are ubiquitous and form thick mats in freshwater systems, such as rivers, that are sometimes toxic due to the production of potent neurotoxins (anatoxins).</p>
+</section>
+<section id="attribution-notice" class="level2">
+<h2 class="anchored" data-anchor-id="attribution-notice">Attribution notice</h2>
+<p>This workshop was created using materials from BIOSCI701 by Dr.&nbsp;Kim Handley at the University of Auckland.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

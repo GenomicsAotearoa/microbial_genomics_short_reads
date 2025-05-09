@@ -26,40 +26,28 @@
     "href": "1.introduction.html",
     "title": "Introduction",
     "section": "",
-    "text": "This workshop aims to provide a comprehensive understanding of microbial genome assembly using short-read sequencing data. It showcases the different stages involved in assembling bacterial genomes from raw sequencing data of bacterial isolates, including quality control, genome assembly using a de novo approach, as well as genome annotation and visualisation.\nThis workshop assumes that attendees have basic knowledge in commandline and R scripting.",
-    "crumbs": [
-      "Introduction"
-    ]
+    "text": "This workshop aims to provide a comprehensive understanding of microbial genome assembly using short-read sequencing data. It showcases the different stages involved in assembling bacterial genomes from raw sequencing data of bacterial isolates, including quality control, genome assembly using a de novo approach, as well as genome annotation and visualisation.\nThis workshop assumes that attendees have basic knowledge in commandline and R scripting."
   },
   {
     "objectID": "1.introduction.html#sequencing-and-genome-assembly",
     "href": "1.introduction.html#sequencing-and-genome-assembly",
     "title": "Introduction",
     "section": "Sequencing and genome assembly",
-    "text": "Sequencing and genome assembly\nThe majority of microbial genome assemblies today are based on short-read sequencing platforms such as Illumina, which offer the advantages of high throughput, low cost, and relatively low error rates. However, short reads present challenges in genome assembly due to their limited length and the presence of repetitive regions in genomes. While longer reads (e.g., from PacBio or Oxford Nanopore) can provide better coverage of these regions, short-read sequencing remains the most common and accessible method for routine microbial genome assembly.\n\nDe novo vs. reference-guided assembly\nDe novo genome assembly refers to the process of constructing a genome from scratch without using a reference genome. This approach is particularly useful when working with organisms for which no high quality, closed reference genome is available (which also is quite the norm for microorganisms). The process of de novo assembly relies on the identification of overlap regions on the sequence reads themselves to reconstruct genomes. It is often preferred for microbial genomes when high-quality, non-contaminated sequencing data is available, as it avoids biases that may arise from comparison to reference genomes that would be, for example, phylogenetically too distant.\nIn contrast, reference-guided assembly involves mapping short-read sequences to an existing reference genome of a closely related species. This method relies on the reference genome to guide the assembly process, making it faster and potentially more accurate, particularly for well-studied organisms.\n\n\nGenome assembly workflow\n\n\n\nKey considerations\nThere are a few general points that are worth considering when setting up a study involving sequencing and genome assembly from microbial isolates, with emphasis on each point likely influenced by the research question(s):\n\nSequencing read length: “short” read length usually sits between 50 and 300 bp, longer reads can improve assembly contiguity and genome quality.\nSequencing depth: number of times each base is read during sequencing. Higher depth reduces sequencing errors and noise, leading to more accurate base calls.\nContamination: non-target DNA (e.g., from host or environment) can interfere with the assembly process.",
-    "crumbs": [
-      "Introduction"
-    ]
+    "text": "Sequencing and genome assembly\nThe majority of microbial genome assemblies today are based on short-read sequencing platforms such as Illumina, which offer the advantages of high throughput, low cost, and relatively low error rates. However, short reads present challenges in genome assembly due to their limited length and the presence of repetitive regions in genomes. While longer reads (e.g., from PacBio or Oxford Nanopore) can provide better coverage of these regions, short-read sequencing remains the most common and accessible method for routine microbial genome assembly.\n\nDe novo vs. reference-guided assembly\nDe novo genome assembly refers to the process of constructing a genome from scratch without using a reference genome. This approach is particularly useful when working with organisms for which no high quality, closed reference genome is available (which also is quite the norm for microorganisms). The process of de novo assembly relies on the identification of overlap regions on the sequence reads themselves to reconstruct genomes. It is often preferred for microbial genomes when high-quality, non-contaminated sequencing data is available, as it avoids biases that may arise from comparison to reference genomes that would be, for example, phylogenetically too distant.\nIn contrast, reference-guided assembly involves mapping short-read sequences to an existing reference genome of a closely related species. This method relies on the reference genome to guide the assembly process, making it faster and potentially more accurate, particularly for well-studied organisms.\n\n\nGenome assembly workflow\n\n\n\nKey considerations\nThere are a few general points that are worth considering when setting up a study involving sequencing and genome assembly from microbial isolates, with emphasis on each point likely influenced by the research question(s):\n\nSequencing read length: “short” read length usually sits between 50 and 300 bp, longer reads can improve assembly contiguity and genome quality.\nSequencing depth: number of times each base is read during sequencing. Higher depth reduces sequencing errors and noise, leading to more accurate base calls.\nContamination: non-target DNA (e.g., from host or environment) can interfere with the assembly process."
   },
   {
     "objectID": "1.introduction.html#a-bit-of-background-on-the-data",
     "href": "1.introduction.html#a-bit-of-background-on-the-data",
     "title": "Introduction",
     "section": "A bit of background on the data",
-    "text": "A bit of background on the data\nData used in this workshop was retrieved from Tee et al., 2021: “Genome streamlining, plasticity, and metabolic versatility distinguish co-occurring toxic and nontoxic cyanobacterial strains of Microcoleus” (https://doi.org/10.1128/mBio.02235-21).\nThis workshop works through sequencing data from 10 isolates of Microcoleus. Species from this benthic cyanobacterial are ubiquitous and form thick mats in freshwater systems, such as rivers, that are sometimes toxic due to the production of potent neurotoxins (anatoxins).",
-    "crumbs": [
-      "Introduction"
-    ]
+    "text": "A bit of background on the data\nData used in this workshop was retrieved from Tee et al., 2021: “Genome streamlining, plasticity, and metabolic versatility distinguish co-occurring toxic and nontoxic cyanobacterial strains of Microcoleus” (https://doi.org/10.1128/mBio.02235-21).\nThis workshop works through sequencing data from 10 isolates of Microcoleus. Species from this benthic cyanobacterial are ubiquitous and form thick mats in freshwater systems, such as rivers, that are sometimes toxic due to the production of potent neurotoxins (anatoxins)."
   },
   {
     "objectID": "1.introduction.html#attribution-notice",
     "href": "1.introduction.html#attribution-notice",
     "title": "Introduction",
     "section": "Attribution notice",
-    "text": "Attribution notice\nThis workshop was created using materials from BIOSCI701 by Dr. Kim Handley at the University of Auckland.",
-    "crumbs": [
-      "Introduction"
-    ]
+    "text": "Attribution notice\nThis workshop was created using materials from BIOSCI701 by Dr. Kim Handley at the University of Auckland."
   },
   {
     "objectID": "2.sequencing-read-qc.html",
@@ -97,9 +85,30 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Microbial Genome Assembbly with Short Reads",
+    "title": "Introduction",
     "section": "",
-    "text": "Welcome to our online workshop on Microbial Genome Assembly with Short Reads. This workshop runs over two half-days, from 9am - 1pm each day. This material will remain live and available, and assumes that you are working on the NeSI (New Zealand eScience Infrastructure) HPC system."
+    "text": "This workshop aims to provide a comprehensive understanding of microbial genome assembly using short-read sequencing data. It showcases the different stages involved in assembling bacterial genomes from raw sequencing data of bacterial isolates, including quality control, genome assembly using a de novo approach, as well as genome annotation and visualisation.\nThis workshop assumes that attendees have basic knowledge in commandline and R scripting."
+  },
+  {
+    "objectID": "index.html#sequencing-and-genome-assembly",
+    "href": "index.html#sequencing-and-genome-assembly",
+    "title": "Introduction",
+    "section": "Sequencing and genome assembly",
+    "text": "Sequencing and genome assembly\nThe majority of microbial genome assemblies today are based on short-read sequencing platforms such as Illumina, which offer the advantages of high throughput, low cost, and relatively low error rates. However, short reads present challenges in genome assembly due to their limited length and the presence of repetitive regions in genomes. While longer reads (e.g., from PacBio or Oxford Nanopore) can provide better coverage of these regions, short-read sequencing remains the most common and accessible method for routine microbial genome assembly.\n\nDe novo vs. reference-guided assembly\nDe novo genome assembly refers to the process of constructing a genome from scratch without using a reference genome. This approach is particularly useful when working with organisms for which no high quality, closed reference genome is available (which also is quite the norm for microorganisms). The process of de novo assembly relies on the identification of overlap regions on the sequence reads themselves to reconstruct genomes. It is often preferred for microbial genomes when high-quality, non-contaminated sequencing data is available, as it avoids biases that may arise from comparison to reference genomes that would be, for example, phylogenetically too distant.\nIn contrast, reference-guided assembly involves mapping short-read sequences to an existing reference genome of a closely related species. This method relies on the reference genome to guide the assembly process, making it faster and potentially more accurate, particularly for well-studied organisms.\n\n\nGenome assembly workflow\n\n\n\nKey considerations\nThere are a few general points that are worth considering when setting up a study involving sequencing and genome assembly from microbial isolates, with emphasis on each point likely influenced by the research question(s):\n\nSequencing read length: “short” read length usually sits between 50 and 300 bp, longer reads can improve assembly contiguity and genome quality.\nSequencing depth: number of times each base is read during sequencing. Higher depth reduces sequencing errors and noise, leading to more accurate base calls.\nContamination: non-target DNA (e.g., from host or environment) can interfere with the assembly process."
+  },
+  {
+    "objectID": "index.html#a-bit-of-background-on-the-data",
+    "href": "index.html#a-bit-of-background-on-the-data",
+    "title": "Introduction",
+    "section": "A bit of background on the data",
+    "text": "A bit of background on the data\nData used in this workshop was retrieved from Tee et al., 2021: “Genome streamlining, plasticity, and metabolic versatility distinguish co-occurring toxic and nontoxic cyanobacterial strains of Microcoleus” (https://doi.org/10.1128/mBio.02235-21).\nThis workshop works through sequencing data from 10 isolates of Microcoleus. Species from this benthic cyanobacterial are ubiquitous and form thick mats in freshwater systems, such as rivers, that are sometimes toxic due to the production of potent neurotoxins (anatoxins)."
+  },
+  {
+    "objectID": "index.html#attribution-notice",
+    "href": "index.html#attribution-notice",
+    "title": "Introduction",
+    "section": "Attribution notice",
+    "text": "Attribution notice\nThis workshop was created using materials from BIOSCI701 by Dr. Kim Handley at the University of Auckland."
   },
   {
     "objectID": "5a.analyses-visualisation.html",

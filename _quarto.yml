@@ -7,8 +7,8 @@ website:
   sidebar:
     style: "docked"
     contents:
-      - text: "Introduction"
-        href: 1.introduction.qmd
+#      - text: "Introduction"
+#        href: 1.introduction.qmd
       - section: "Day One"  
 #        href: day_1_overview.qmd
         contents:
