@@ -13,12 +13,19 @@ Key considerations in sequence quality control:
 - **GC content bias:** deviations from expected GC content may suggest contamination or sequencing bias.
 
 ---
+**Navigate to our working directory**
+
+```bash
+cd ~/mgsr
+```
+Confirm the directory is correct with `pwd` command. It should say `/home/yourusername/mgsr` 
 
 ### 1. Initial quality control
 
 The first step in quality control is to assess the overall quality of your raw sequencing data. For that, we use a popular tool called [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/), which generates a comprehensive quality report for each FASTQ file. 
 
 ---
+
 
 **1. Verify Raw Sequencing Files**  
 
