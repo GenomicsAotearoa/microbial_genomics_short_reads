@@ -35,7 +35,7 @@ There are a few general points that are worth considering when setting up a stud
 
 Data used in this workshop was retrieved from Tee et al., 2021: "Genome streamlining, plasticity, and metabolic versatility distinguish co-occurring toxic and nontoxic cyanobacterial strains of *Microcoleus*" ([https://doi.org/10.1128/mBio.02235-21](https://doi.org/10.1128/mBio.02235-21)).
 
-This workshop works through sequencing data from 10 isolates of *Microcoleus*. Species from this benthic cyanobacterial are ubiquitous and form thick mats in freshwater systems, such as rivers, that are sometimes toxic due to the production of potent neurotoxins (anatoxins).
+This workshop works through sequencing data from 10 isolates of *Microcoleus*. Species from this benthic cyanobacteria are ubiquitous and form thick mats in freshwater systems, such as rivers, that are sometimes toxic due to the production of potent neurotoxins (anatoxins).
 
 ## Attribution notice 
 This workshop was created using materials from BIOSCI701 by Dr. Kim Handley at the University of Auckland.
