@@ -149,8 +149,6 @@ module load MultiQC/1.24.1-foss-2023a-Python-3.11.6
 Move into the directory with the FastQC results and run MultiQC
 
 ```bash
-cd 1.raw_reads_QC/
-
 multiqc .
 ```
 
@@ -189,15 +187,19 @@ Copy in read_trimming.sh
 #SBATCH --cpus-per-task 10
 #SBATCH --error         slurm_read_trimming_%A-%a.err
 #SBATCH --output        slurm_read_trimming_%A-%a.out
+#SBATCH --partition     milan
 
 module purge >/dev/null 2>&1
 module load BBMap/39.01-GCC-11.3.0
 
 declare -a array=("01" "02" "03" "04" "05" "06" "07" "08" "09" "10") 
 
+#Move to home directory
+cd ~/mgsr
+
 #Remove sequencing adapters:
 bbduk.sh in1=0.raw_reads/raw.${array[$SLURM_ARRAY_TASK_ID]}_R1.fastq in2=0.raw_reads/raw.${array[$SLURM_ARRAY_TASK_ID]}_R2.fastq \
- out1=2.clean_reads/ad.trim.${array[$SLURM_ARRAY_TASK_ID]}_R1.fastq out2=2.clean_reads/ad.trim.${array[$SLURM_ARRAY_TASK_ID]}_R2.fastq \
+out1=2.clean_reads/ad.trim.${array[$SLURM_ARRAY_TASK_ID]}_R1.fastq out2=2.clean_reads/ad.trim.${array[$SLURM_ARRAY_TASK_ID]}_R2.fastq \
  ref=/opt/nesi/mahuika/BBMap/39.01-GCC-11.3.0/resources/adapters.fa \
  hdist=1 ktrim=r ordered minlen=80 minlenfraction=0.33 mink=11 tbo tpe rcomp=f k=23
 
