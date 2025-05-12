@@ -284,6 +284,8 @@ nano read_trimming_stats.sh
 Copy in read_trimming_stats.sh
 
 ```bash
+#!/bin/bash
+
 # Extract relevant columns (Sample and Total Sequences) from clean data
 cut -f1,5 clean_multiqc_fastqc.txt > clean_reads_stats.txt
 
