@@ -80,6 +80,7 @@ SPAdes generates several important output files:
 >**Objective:** Explore how different SPAdes parameters affect assembly quality and contiguity
 
 SPAdes provides several options to adjust and optimize the assembly process:
+
 - The k-mer size affects how reads overlap and form contigs.
 - The --careful mode (mismatch correction) may improve accuracy but reduce contiguity.
 - Adjusting coverage cutoffs can help remove low quality contigs.
