@@ -262,9 +262,9 @@ n_scaffolds     n_contigs       scaf_bp contig_bp       gap_pct scaf_N50        
 1049    1086    7872491 7870141 0.030   102     21818   109     20218   550     2148    572     2109    84541   84541   18      15.058  0.44444 0.02782 /scale_wlg_nobackup/filesets/nobackup/uoa00626/emilie_working/test2-SR-workshop/5.assembly_evaluation/v1/scaffolds_02_v1.m1000.fasta
 ```
 
-Subset files to view only the 3 key metrics mentioned above.
+Subset files to view 3 of the key metrics mentioned above (number of scaffolds, total number of basepairs in assembly and N50).
 
-```
+```bash
 echo "SPAdes assembly v1" && cut -f1,3,7 assembly_stats_v1.txt 
 echo "SPAdes assembly v2" && cut -f1,3,7 assembly_stats_v2.txt 
 echo "SPAdes assembly v3" && cut -f1,3,7 assembly_stats_v3.txt 
