@@ -12,8 +12,8 @@ Key considerations in sequence quality control:
 - **Read length distribution:** checking for unusually short or degraded reads that may indicate sequencing issues.
 - **GC content bias:** deviations from expected GC content may suggest contamination or sequencing bias.
 
----
-**Navigate to our working directory**
+
+Navigate to our working directory
 
 ```bash
 cd ~/mgsr

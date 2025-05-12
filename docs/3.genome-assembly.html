@@ -249,19 +249,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task 8</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error         slurm_spades_assembly_v1_%A-%a.err</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output        slurm_spades_assembly_v1_%A-%a.out</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="op">&gt;</span>/dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load SPAdes/4.0.0-foss-2023a-Python-3.11.6</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">array</span><span class="op">=</span><span class="va">(</span><span class="st">"01"</span> <span class="st">"02"</span> <span class="st">"03"</span> <span class="st">"04"</span> <span class="st">"05"</span> <span class="st">"06"</span> <span class="st">"07"</span> <span class="st">"08"</span> <span class="st">"09"</span> <span class="st">"10"</span><span class="va">)</span> </span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 5.spades_assembly/v1/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> spades.py <span class="at">-k</span> auto <span class="at">-t</span> 8 <span class="dt">\</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">-1</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R1.fastq <span class="dt">\</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">-2</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R2.fastq <span class="dt">\</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">-s</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_single.fastq <span class="dt">\</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> 5.spades_assembly_v1/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition     milan</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="op">&gt;</span>/dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load SPAdes/4.0.0-foss-2023a-Python-3.11.6</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">array</span><span class="op">=</span><span class="va">(</span><span class="st">"01"</span> <span class="st">"02"</span> <span class="st">"03"</span> <span class="st">"04"</span> <span class="st">"05"</span> <span class="st">"06"</span> <span class="st">"07"</span> <span class="st">"08"</span> <span class="st">"09"</span> <span class="st">"10"</span><span class="va">)</span> </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Move to home directory</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mgsr</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Create directory for SPAdes output files</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 5.spades_assembly/v1/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#Run SPAdes</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> spades.py <span class="at">-k</span> auto <span class="at">-t</span> 8 <span class="dt">\</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">-1</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R1.fastq <span class="dt">\</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">-2</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R2.fastq <span class="dt">\</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">-s</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_single.fastq <span class="dt">\</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> 5.spades_assembly/v1/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Submit slurm job</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> spades_assembly_v1.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top table">
@@ -312,7 +318,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><strong>Objective:</strong> Explore how different SPAdes parameters affect assembly quality and contiguity</p>
 </blockquote>
-<p>SPAdes provides several options to adjust and optimize the assembly process: - The k-mer size affects how reads overlap and form contigs. - The –careful mode (mismatch correction) may improve accuracy but reduce contiguity. - Adjusting coverage cutoffs can help remove low quality contigs.</p>
+<p>SPAdes provides several options to adjust and optimize the assembly process:</p>
+<ul>
+<li>The k-mer size affects how reads overlap and form contigs.</li>
+<li>The –careful mode (mismatch correction) may improve accuracy but reduce contiguity.</li>
+<li>Adjusting coverage cutoffs can help remove low quality contigs.</li>
+</ul>
 <hr>
 <p><strong>1. Assemble an isolate using different k-mer settings</strong></p>
 <p>By default, SPAdes automatically selects k-mer sizes, but we can manually specify them. The recommended k-mer sizes for different sequencing technologies can be found in the SPAdes documentation.</p>
@@ -329,19 +340,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task 8</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error         slurm_spades_assembly_v2_%A-%a.err</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output        slurm_spades_assembly_v2_%A-%a.out</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="op">&gt;</span>/dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load SPAdes/4.0.0-foss-2023a-Python-3.11.6</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">array</span><span class="op">=</span><span class="va">(</span><span class="st">"01"</span> <span class="st">"02"</span> <span class="st">"03"</span> <span class="st">"04"</span> <span class="st">"05"</span> <span class="st">"06"</span> <span class="st">"07"</span> <span class="st">"08"</span> <span class="st">"09"</span> <span class="st">"10"</span><span class="va">)</span> </span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 5.spades_assembly/v2/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> spades.py <span class="at">-k</span> 33,55,77,99,121 <span class="at">-t</span> 8 <span class="dt">\</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">-1</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R1.fastq <span class="dt">\</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">-2</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R2.fastq <span class="dt">\</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">-s</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_single.fastq <span class="dt">\</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> 5.spades_assembly/v2/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition     milan</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="op">&gt;</span>/dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load SPAdes/4.0.0-foss-2023a-Python-3.11.6</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">array</span><span class="op">=</span><span class="va">(</span><span class="st">"01"</span> <span class="st">"02"</span> <span class="st">"03"</span> <span class="st">"04"</span> <span class="st">"05"</span> <span class="st">"06"</span> <span class="st">"07"</span> <span class="st">"08"</span> <span class="st">"09"</span> <span class="st">"10"</span><span class="va">)</span> </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Move to home directory</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mgsr</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Create directory for SPAdes output files</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 5.spades_assembly/v2/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#Run SPAdes</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> spades.py <span class="at">-k</span> 33,55,77,99,121 <span class="at">-t</span> 8 <span class="dt">\</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">-1</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R1.fastq <span class="dt">\</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">-2</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R2.fastq <span class="dt">\</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">-s</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_single.fastq <span class="dt">\</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> 5.spades_assembly/v2/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Submit slurm job</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> spades_assembly_v2.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
@@ -360,19 +377,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task 8</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error         slurm_spades_assembly_v3_%A-%a.err</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output        slurm_spades_assembly_v3_%A-%a.out</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="op">&gt;</span>/dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load SPAdes/4.0.0-foss-2023a-Python-3.11.6</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">array</span><span class="op">=</span><span class="va">(</span><span class="st">"01"</span> <span class="st">"02"</span> <span class="st">"03"</span> <span class="st">"04"</span> <span class="st">"05"</span> <span class="st">"06"</span> <span class="st">"07"</span> <span class="st">"08"</span> <span class="st">"09"</span> <span class="st">"10"</span><span class="va">)</span> </span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 5.spades_assembly/v3/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> spades.py <span class="at">-k</span> auto <span class="at">--careful</span> <span class="at">-t</span> 8 <span class="dt">\</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">-1</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R1.fastq <span class="dt">\</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">-2</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R2.fastq <span class="dt">\</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">-s</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_single.fastq <span class="dt">\</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> 5.spades_assembly/v3/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition     milan</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="op">&gt;</span>/dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load SPAdes/4.0.0-foss-2023a-Python-3.11.6</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">array</span><span class="op">=</span><span class="va">(</span><span class="st">"01"</span> <span class="st">"02"</span> <span class="st">"03"</span> <span class="st">"04"</span> <span class="st">"05"</span> <span class="st">"06"</span> <span class="st">"07"</span> <span class="st">"08"</span> <span class="st">"09"</span> <span class="st">"10"</span><span class="va">)</span> </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Move to home directory</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mgsr</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Create directory for SPAdes output files</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 5.spades_assembly/v3/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co">#Run SPAdes</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> spades.py <span class="at">-k</span> auto <span class="at">--careful</span> <span class="at">-t</span> 8 <span class="dt">\</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">-1</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R1.fastq <span class="dt">\</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">-2</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_R2.fastq <span class="dt">\</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">-s</span> 2.clean_reads/clean.<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>_single.fastq <span class="dt">\</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> 5.spades_assembly/v3/<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Submit slurm job</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> spades_assembly_v3.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
@@ -380,8 +403,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="comparing-assembly-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="comparing-assembly-statistics">3. Comparing assembly statistics</h3>
 <p><strong>1. Filter out short sequences</strong></p>
-<p>Before looking at the assemblies in more detail, we will first remove scaffolds that are shorter than 1000 bp. It is common practice to do so - there are several reasons why, such as minimizing assembly artefacts and improving downstream analyses such as gene predictions (that is partly because the average bacterial gene length is aroud 900 to 1000 bp).</p>
-<p>To filter out sequences &lt; 1000 bp, we will use seqmagick. Clear out previous modules to avoid conflicts and load seqmagick.</p>
+<p>Before looking at the assemblies in more detail, we will first remove scaffolds that are shorter than 1000 bp. It is common practice to do so - there are several reasons why, such as minimizing assembly artefacts and improving downstream analyses, especially gene prediction (that is partly because the average bacterial gene length is aroud 900 to 1000 bp).</p>
+<p>To filter out sequences &lt; 1000 bp, we will use <a href="https://github.com/fhcrc/seqmagick">seqmagick</a>. Clear out previous modules to avoid conflicts and load seqmagick.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load seqmagick/0.8.4-gimkl-2020a-Python-3.8.2    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Run seqmagick on all scaffold files using a loop.</p>
@@ -407,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>GC Content:</strong> Check for abnormal GC content, which could indicate contamination.</li>
 <li><strong>Maximum scaffold/contig length:</strong> Provides an idea of the longest assembled sequence.</li>
 </ul>
-<p>Now let’s run BBMap’s statswrapper.sh on the different variations of assemblies perfomed using a loop.</p>
+<p>Now let’s run <a href="https://archive.jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/bbmap-guide/">BBMap</a>’s statswrapper.sh on the different variations of assemblies perfomed using a loop.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load BBMap/39.01-GCC-11.3.0 </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> v1 v2 v3<span class="kw">;</span> <span class="cf">do</span></span>
@@ -420,10 +443,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>n_scaffolds     n_contigs       scaf_bp contig_bp       gap_pct scaf_N50        scaf_L50        ctg_N50 ctg_L50 scaf_N90        scaf_L90        ctg_N90 ctg_L90 scaf_max        ctg_max scaf_n_gt50K scaf_pct_gt50K   gc_avg  gc_std  filename
 108     125     6451046 6449346 0.026   15      120978  19      100947  52      35705   62      31253   401116  377043  40      82.328  0.44562 0.01855 /scale_wlg_nobackup/filesets/nobackup/uoa00626/emilie_working/test2-SR-workshop/5.assembly_evaluation/v1/scaffolds_01_v1.m1000.fasta
 1049    1086    7872491 7870141 0.030   102     21818   109     20218   550     2148    572     2109    84541   84541   18      15.058  0.44444 0.02782 /scale_wlg_nobackup/filesets/nobackup/uoa00626/emilie_working/test2-SR-workshop/5.assembly_evaluation/v1/scaffolds_02_v1.m1000.fasta</code></pre>
-<p>Subset files to view only the 3 key metrics mentioned above.</p>
-<pre><code>echo "SPAdes assembly v1" &amp;&amp; cut -f1,3,7 assembly_stats_v1.txt 
-echo "SPAdes assembly v2" &amp;&amp; cut -f1,3,7 assembly_stats_v2.txt 
-echo "SPAdes assembly v3" &amp;&amp; cut -f1,3,7 assembly_stats_v3.txt </code></pre>
+<p>Subset files to view 3 of the key metrics mentioned above (number of scaffolds, total number of basepairs in assembly and N50).</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"SPAdes assembly v1"</span> <span class="kw">&amp;&amp;</span> <span class="fu">cut</span> <span class="at">-f1,3,7</span> assembly_stats_v1.txt </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"SPAdes assembly v2"</span> <span class="kw">&amp;&amp;</span> <span class="fu">cut</span> <span class="at">-f1,3,7</span> assembly_stats_v2.txt </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"SPAdes assembly v3"</span> <span class="kw">&amp;&amp;</span> <span class="fu">cut</span> <span class="at">-f1,3,7</span> assembly_stats_v3.txt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Discussion points:</strong></p>
 <ul>
 <li>How do N50 values differ between default vs.&nbsp;custom k-mer assembly?</li>

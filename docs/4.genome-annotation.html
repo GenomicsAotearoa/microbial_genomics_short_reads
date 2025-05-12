@@ -201,12 +201,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#genome-annotation" id="toc-genome-annotation" class="nav-link active" data-scroll-target="#genome-annotation">4. Genome annotation</a>
-  <ul class="collapse">
-  <li><a href="#genome-quality" id="toc-genome-quality" class="nav-link" data-scroll-target="#genome-quality">4.1 Genome quality</a></li>
-  <li><a href="#taxonomic-classification" id="toc-taxonomic-classification" class="nav-link" data-scroll-target="#taxonomic-classification">4.2 Taxonomic classification</a></li>
-  <li><a href="#gene-prediction-and-annotation" id="toc-gene-prediction-and-annotation" class="nav-link" data-scroll-target="#gene-prediction-and-annotation">4.3. Gene prediction and annotation</a></li>
-  </ul></li>
+  <li><a href="#genome-quality" id="toc-genome-quality" class="nav-link active" data-scroll-target="#genome-quality">1. Genome quality</a></li>
+  <li><a href="#taxonomic-classification" id="toc-taxonomic-classification" class="nav-link" data-scroll-target="#taxonomic-classification">2. Taxonomic classification</a></li>
+  <li><a href="#gene-prediction-and-annotation" id="toc-gene-prediction-and-annotation" class="nav-link" data-scroll-target="#gene-prediction-and-annotation">3. Gene prediction and annotation</a></li>
   </ul>
 </nav>
     </div>
@@ -232,8 +229,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="genome-annotation" class="level2">
-<h2 class="anchored" data-anchor-id="genome-annotation">4. Genome annotation</h2>
 <p><strong>Objectives</strong></p>
 <blockquote class="blockquote">
 <ul>
@@ -244,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <hr>
 <section id="genome-quality" class="level3">
-<h3 class="anchored" data-anchor-id="genome-quality">4.1 Genome quality</h3>
+<h3 class="anchored" data-anchor-id="genome-quality">1. Genome quality</h3>
 <p>To assess the quality of the assembled genomes, we will use <a href="https://github.com/chklovski/CheckM2">CheckM2</a>, which assesses the degree of completess and contamination of microbial genomes (whether they are from isolates, single cell or metagenome data) using machine learning.</p>
 <p>First, let’s gather all assembled genomes into one directory.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> 7.genome_annotation/all_assembled_genomes</span>
@@ -267,12 +262,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task 10</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error         slurm_checkm2_%j.err</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output        slurm_checkm2_%j.out</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="op">&gt;</span>/dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load Python</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load CheckM2/1.0.1-Miniconda3</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> checkm2 predict <span class="at">--threads</span> 10  <span class="at">-x</span> fasta <span class="at">--input</span> 7.genome_annotation/all_assembled_genomes/ <span class="at">--output-directory</span> 7.genome_annotation/genome_quality/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition     milan</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="op">&gt;</span>/dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load Python</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load CheckM2/1.0.1-Miniconda3</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> checkm2 predict <span class="at">--threads</span> 10  <span class="at">-x</span> fasta <span class="at">--input</span> 7.genome_annotation/all_assembled_genomes/ <span class="at">--output-directory</span> 7.genome_annotation/genome_quality/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Submit SLURM job.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> checkm2.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Output files</strong></p>
@@ -300,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 <section id="taxonomic-classification" class="level3">
-<h3 class="anchored" data-anchor-id="taxonomic-classification">4.2 Taxonomic classification</h3>
+<h3 class="anchored" data-anchor-id="taxonomic-classification">2. Taxonomic classification</h3>
 <p>To assign taxonomy to the assembled genomes, we are using <a href="https://github.com/Ecogenomics/GTDBTk">GTDB-Tk</a> (Genome Taxonomy Database Toolkit), a bioinformatics tool designed for the taxonomic classification of bacterial and archaeal genomes. It uses the <a href="https://gtdb.ecogenomic.org/">Genome Taxonomy Database</a> (GTDB), which provides a standardized taxonomy based on genome phylogeny based on a set of conserved single-copy proteins.</p>
 <p><strong>1. Create a directory for GTDB-Tk files</strong></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> 7.genome_annotation/taxonomy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -317,16 +313,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task 10</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error         slurm_gtdbtk_%j.err</span></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output        slurm_gtdbtk_%j.out</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="op">&gt;</span>/dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load GTDB-Tk/2.4.0-foss-2023a-Python-3.11.6</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> gtdbtk classify_wf <span class="dt">\</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">-x</span> fasta <span class="dt">\</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">--cpus</span> 10 <span class="dt">\</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">--genome_dir</span> 7.genome_annotation/all_assembled_genomes/ <span class="dt">\</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">--skip_ani_screen</span> <span class="dt">\</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">--out_dir</span> 7.genome_annotation/taxonomy/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition     milan</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="op">&gt;</span>/dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load GTDB-Tk/2.4.0-foss-2023a-Python-3.11.6</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> gtdbtk classify_wf <span class="dt">\</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">-x</span> fasta <span class="dt">\</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">--cpus</span> 10 <span class="dt">\</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">--genome_dir</span> 7.genome_annotation/all_assembled_genomes/ <span class="dt">\</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">--skip_ani_screen</span> <span class="dt">\</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">--out_dir</span> 7.genome_annotation/taxonomy/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Submit SLURM job.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> taxonomy.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Output files</strong></p>
@@ -341,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 <section id="gene-prediction-and-annotation" class="level3">
-<h3 class="anchored" data-anchor-id="gene-prediction-and-annotation">4.3. Gene prediction and annotation</h3>
+<h3 class="anchored" data-anchor-id="gene-prediction-and-annotation">3. Gene prediction and annotation</h3>
 <p>Here, we aim to identify protein-coding sequences, translate them into protein sequences, and generate functional annotations for each gene.</p>
 <p>This step uses <a href="https://github.com/tseemann/prokka">Prokka</a>, a tool specifically desgined to find and annotate gene coding sequences and other genomic features from prokaryotes and viruses. It first uses <a href="https://github.com/hyattpd/Prodigal">Prodigal</a> which is a very popular and robust protein-coding gene prediction tool that can handle draft genomes, then uses a variety of databases when trying to assign function to the predicted gene sequences.</p>
 <p><strong>1. Create a directory for gene prediction</strong></p>
@@ -361,16 +358,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task 10</span></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error         slurm_prokka_%j.err</span></span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output        slurm_prokka_%j.out</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="op">&gt;</span>/dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load prokka/1.14.5-GCC-9.2.0</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">array</span><span class="op">=</span><span class="va">(</span><span class="st">"01"</span> <span class="st">"02"</span> <span class="st">"03"</span> <span class="st">"04"</span> <span class="st">"05"</span> <span class="st">"06"</span> <span class="st">"07"</span> <span class="st">"08"</span> <span class="st">"09"</span> <span class="st">"10"</span><span class="va">)</span> </span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">prokka</span> 7.genome_annotation/all_assembled_genomes/genome_<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>.fasta <span class="dt">\</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">--outdir</span> 7.genome_annotation/gene_prediction <span class="dt">\</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">--prefix</span> genome_<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span> <span class="dt">\</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">--cpus</span> 10 <span class="dt">\</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition     milan</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge <span class="op">&gt;</span>/dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load prokka/1.14.5-GCC-9.2.0</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-a</span> <span class="va">array</span><span class="op">=</span><span class="va">(</span><span class="st">"01"</span> <span class="st">"02"</span> <span class="st">"03"</span> <span class="st">"04"</span> <span class="st">"05"</span> <span class="st">"06"</span> <span class="st">"07"</span> <span class="st">"08"</span> <span class="st">"09"</span> <span class="st">"10"</span><span class="va">)</span> </span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> prokka 7.genome_annotation/all_assembled_genomes/genome_<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span>.fasta <span class="dt">\</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">--outdir</span> 7.genome_annotation/gene_prediction <span class="dt">\</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">--prefix</span> genome_<span class="va">${array</span><span class="op">[</span><span class="va">$SLURM_ARRAY_TASK_ID</span><span class="op">]</span><span class="va">}</span> <span class="dt">\</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">--cpus</span> 10 <span class="dt">\</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Submit SLURM job.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> gene_prediction.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Output files</strong></p>
@@ -453,7 +451,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
