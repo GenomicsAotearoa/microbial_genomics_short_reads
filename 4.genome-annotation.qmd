@@ -219,7 +219,7 @@ Copy the following script in gene_prediction.sh
 ```bash
 #!/bin/bash -e
 
-#SBATCH --account       uoa00626
+#SBATCH --account       nesi02659
 #SBATCH --job-name      prokka
 #SBATCH --time          00:15:00
 #SBATCH --mem           1GB
