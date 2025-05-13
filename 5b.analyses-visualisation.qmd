@@ -5,7 +5,7 @@ date: "2025-03-12"
 ---
 
 Load libraries
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
 library(ggtree)
 library(phangorn)
 library(ggplot2)
