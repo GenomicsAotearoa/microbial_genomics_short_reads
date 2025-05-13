@@ -239,7 +239,7 @@ cd ~/mgsr
 srun prokka 7.genome_annotation/all_assembled_genomes/genome_${array[$SLURM_ARRAY_TASK_ID]}.fasta \
   --outdir 7.genome_annotation/gene_prediction \
   --prefix genome_${array[$SLURM_ARRAY_TASK_ID]} \
-  --cpus 10 \
+  --cpus 10
 ```
 
 Submit SLURM job.
